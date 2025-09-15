@@ -3,8 +3,8 @@ from numpy import *
 import os
 class Admin:
     def __init__(self):
-       self.user_list=[]
-       self.password_list=[]
+       self.user_list:list[str]
+       self.password_list:list[str]
        self.data={
             "Username":self.user_list,
             "Password":self.password_list,
@@ -42,9 +42,8 @@ class Admin:
         self.user_list.clear()
         self.password_list.clear()
 
-def Menu_Admin():
-    admin=Admin()
-    while True:
+    def Menu_Admin(self):
+     while True:
         print("1.Register an user")
         print("2.Export excel of users list")
         print("3.Exit")
@@ -52,9 +51,9 @@ def Menu_Admin():
            op=int(input("Select an option: "))
            match op:
                 case 1:
-                    admin.Register_User()
+                    self.Register_User()
                 case 2:
-                    admin.Excel_User()
+                    self.Excel_User()
                 case 3:
                     print("Exiting the menu..")
                     break

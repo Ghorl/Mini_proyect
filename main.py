@@ -1,5 +1,5 @@
-from Admin import Menu_Admin
-from User import Menu_User
+from Admin import Admin
+from User import User
 import pandas as pd
 
 class Login:
@@ -10,17 +10,18 @@ class Login:
     self.password_admin="capi123"
 
   def LoginAdmin(self):
+      admin_class=Admin()
       admin=input("Admin: ")
       password=input("password: ")
-      if admin!=self.user_admin or password!=self.password_admin:
+      if admin!=self.user_admin and password!=self.password_admin:
          print("User or password incorrect")
          return
       else:
          print("\nWelcome admin")
-         Menu_Admin()
-         #Pondre una funcion que lo llevara al menu del admin
+         admin_class.Menu_Admin()
          
   def LoginUser(self):
+      user_class=User()
       user=input("Username: ")
       password=input("Password: ")
       if not user in self.data['Username'].values or not password in self.data['Password'].values:
@@ -28,11 +29,11 @@ class Login:
          return
       else:
          print("\nWelcome User")
-         Menu_User()
-  
-def MenuLogin():
-    login=Login()
-    while True:
+         user_class.Menu_User()
+
+  def MenuLogin(self):
+     
+     while True:
       print("\nWelcome ADMIN/USER")
       print("1. Login ADMIN")
       print("2. Login User")
@@ -41,13 +42,13 @@ def MenuLogin():
         op=int(input("Choose an option: "))
         match op:
             case 1:
-                login.LoginAdmin()
+                self.LoginAdmin()
             case 2:
-                login.LoginUser()
+                self.LoginUser()
             case 3:
                 print("Leaving the program..")
                 break
       except ValueError:
         print("Please, introduce a valid number.\n")
-
-MenuLogin()
+login =Login()
+login.MenuLogin()
